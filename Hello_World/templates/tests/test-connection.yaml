@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "Hello_World.fullname" . }}-test-connection"
+  labels:
+    {{- include "Hello_World.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: python-flash
+      image: hc-eu-west-aws-artifactory.cloud.health.ge.com/docker-snapshot-eis/python-flask:0.0.1
+  restartPolicy: Never
